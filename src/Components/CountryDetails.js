@@ -18,10 +18,12 @@ function CounntryDetails(){
 
     //click update
     const handleUpdate = ([colunmData]) => () => {
-        
-        console.log('button is working');
+        setColunmData(colunmData);
+        //console.log(colunmData);
     };
 
+
+    const [ showAddForm, setShowAddForm ] = useState('none');
 
     // DELETE request using fetch with error handling
     const handleDelete = (id) => () => {
@@ -34,6 +36,7 @@ function CounntryDetails(){
             const isJson = response.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();
 
+            console.log(response);
             // check for error response
             if (!response.ok) {
                 // get error message from body or default to response status
@@ -41,11 +44,16 @@ function CounntryDetails(){
                 return Promise.reject(error);
             }
 
-            //console.log('Delete successful');
+            console.log('Delete successful');
         })
         .catch(error => {
-            //console.log('There was an error!');
-        });
+            console.log('There was an error!');
+        }).then(
+            function () {
+              window.location.reload();
+            }
+          );
+
     };
     
 
@@ -102,7 +110,7 @@ function CounntryDetails(){
                                 alt='Flag' />
                             </td>
                             <td>
-                            <a href="{ item.flagUrl }" >
+                            <a href={ item.flagUrl }>
                                 Click here for visit Flag
                             </a>
                             </td>
@@ -120,20 +128,18 @@ function CounntryDetails(){
             
             {/*Add Button*/}
             <button 
-            onClick = { handelAdd }>
+            onClick = {() => setShowAddForm("block") }>
                 Add
             </button>
-            <Fragment>
-                <AddCountry />
-            </Fragment>
+                            
+            <UpdateCountry>{ colunmData }</UpdateCountry>
 
-            {/*Update Button
-            <Fragment>
-                <UpdateCountry>{colunmData}</UpdateCountry>
-            </Fragment>
-            */}
+          <div style={{ display: {showAddForm}}}><AddCountry /></div>  
+
 
         </div>
+
+
 
 
     );

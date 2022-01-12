@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState , useEffect } from 'react';
-import { v4 as uuid } from "uuid";
+//import { v4 as uuid } from "uuid";
 
 function UpdateCountry({ children }){
 
@@ -12,10 +12,12 @@ function UpdateCountry({ children }){
     const [ flagUrl , setFlagUrl ] = useState(children.flagUrl);
     const [ gdp , setGdp ] = useState(children.gdp);
 
+
+   console.log(children.countryName)
     //click submit
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const id = uuid();
+        //e.preventDefault();
+       // const id = uuid();
 
         //bind data to the item
         const item = {id, countryName, currency, population, flagUrl, gdp};
@@ -52,7 +54,7 @@ function UpdateCountry({ children }){
                                 <td>
                                     <input
                                         type = "text"
-                                        value = {id}
+                                        value = {children.id}
                                         readOnly= "readOnly"
                                         onChange = {(e) => setId(e.target.value)}
                                     />
@@ -60,7 +62,7 @@ function UpdateCountry({ children }){
                                 <td>
                                     <input
                                         type = "text"
-                                        value = {countryName}
+                                        value = {children.countryName}
                                         placeholder = "Enter Country Name"
                                         onChange = {(e) => setCountryName(e.target.value)}
                                     />
@@ -68,7 +70,7 @@ function UpdateCountry({ children }){
                                 <td>
                                     <input
                                         type = "text"
-                                        value = {currency}
+                                        value = {children.currency}
                                         placeholder = "Enter Currency"
                                         onChange = {(e) => setCurrency(e.target.value)}
                                     />
@@ -76,7 +78,7 @@ function UpdateCountry({ children }){
                                 <td>
                                     <input
                                         type = "text"
-                                        value = {population}
+                                        value = {children.population}
                                         placeholder = "Enter Population"
                                         onChange = {(e) => setPopulation(e.target.value)}
                                     />
@@ -84,7 +86,7 @@ function UpdateCountry({ children }){
                                 <td>
                                     <input
                                         type = "text"
-                                        value = {flagUrl}
+                                        value = {children.flagUrl}
                                         placeholder = "Paste image address here"
                                         onChange = {(e) => setFlagUrl(e.target.value)}
                                     />
@@ -92,7 +94,7 @@ function UpdateCountry({ children }){
                                 <td>
                                     <input
                                         type = "text"
-                                        value = {gdp}
+                                        value = {children.gdp}
                                         placeholder = "Enter GDP value"
                                         onChange = {(e) => setGdp(e.target.value)}
                                     />
