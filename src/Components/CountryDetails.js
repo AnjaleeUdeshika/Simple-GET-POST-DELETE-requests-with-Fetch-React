@@ -1,5 +1,8 @@
-import React, { useState, useEffect, Fragment} from 'react';
+import React, { useState, useEffect} from 'react';
 
+
+
+import "../App.css";
 import AddCountry from './AddCountry';
 import UpdateCountry from './UpdateCountry';
 
@@ -9,8 +12,19 @@ function CounntryDetails(){
     const [data, setData] = useState([]);
 
     //click add
-    const handelAdd = ()=> {
+   // const handelAdd = ()=> {
        // console.log("Button is working");
+    //};
+
+    const handleAdd = () => {
+
+        //show Add form
+        var v = document.getElementById("show").style.display;
+        if (v == "none") {
+          document.getElementById("show").style.display = "inline";
+        } else {
+          document.getElementById("show").style.display = "none";
+        }
     };
 
     //set usestate for update
@@ -20,10 +34,18 @@ function CounntryDetails(){
     const handleUpdate = ([colunmData]) => () => {
         setColunmData(colunmData);
         //console.log(colunmData);
+
+        //show update field
+        var v = document.getElementById("show1").style.display;
+        if (v == "none") {
+          document.getElementById("show1").style.display = "inline";
+        } else {
+          document.getElementById("show1").style.display = "none";
+        }
     };
 
 
-    const [ showAddForm, setShowAddForm ] = useState('none');
+    //const [ showAddForm, setShowAddForm ] = useState('none');
 
     // DELETE request using fetch with error handling
     const handleDelete = (id) => () => {
@@ -81,16 +103,18 @@ function CounntryDetails(){
     }, []);
 
     return(
-        <div>
-            <table>
+        
+        <div className="container-fluid p-5 bg-primary text-white text-center">
+
+            <table className='CountryTable'>
                 <thead>
                     <tr>
-                        <th>Country Name</th>
-                        <th>Currency</th>
-                        <th>Population</th>
-                        <th>GDP</th>
-                        <th>Flag</th>
-                        <th>Flag Url</th>
+                        <th scope="col" data-field="countryName">Country Name</th>
+                        <th scope="col" data-field="currency">Currency</th>
+                        <th scope="col" data-field="population">Population</th>
+                        <th scope="col" data-field="gdp">GDP</th>
+                        <th scope="col" data-field="flag">Flag</th>
+                        <th scope="col" data-field="flagUrl">Flag Url</th>
                     </tr>
                 </thead>
                 
@@ -125,16 +149,23 @@ function CounntryDetails(){
                         ))}
                 </tbody>
             </table>
-            
-            {/*Add Button*/}
-            <button 
-            onClick = {() => setShowAddForm("block") }>
-                Add
+       {/*Add Button*/}
+       <button 
+            onClick={handleAdd}>
+                Add Country
             </button>
-                            
-            <UpdateCountry>{ colunmData }</UpdateCountry>
 
-          <div style={{ display: {showAddForm}}}><AddCountry /></div>  
+
+            {/*SHow Add form*/}
+            <div id="show" style={{ display: "none" }}>
+                <AddCountry/>
+            </div>
+
+            {/*SHow Update form*/}
+            <div id="show1" style={{ display: "none" }}>
+                <UpdateCountry>{ colunmData }</UpdateCountry>
+            </div>
+               
 
 
         </div>

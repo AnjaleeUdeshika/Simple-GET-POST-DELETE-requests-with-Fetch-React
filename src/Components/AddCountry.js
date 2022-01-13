@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from "uuid";
 
+
+import "../App.css";
+
 function AddCountry() {
 
   const [ countryName, setCountryName ] = useState("");
@@ -39,9 +42,11 @@ function AddCountry() {
 return (
     <div className="AddCountry">
 
+      <h1>Add Country Details</h1>
+
       {/*Add form*/}
       <form onSubmit ={handleSubmit} >
-        Country Name
+      <label for="countryName">Country Name</label>
         <input
           type = "text"
           value = {countryName}
@@ -49,7 +54,7 @@ return (
           onChange = {(e) => setCountryName(e.target.value)}
         />
 
-        Currency
+      <label for="currency">Currency</label>
         <input
           type = "text"
           value = {currency}

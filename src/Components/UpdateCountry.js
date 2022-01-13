@@ -2,6 +2,9 @@ import React from 'react';
 import { useState , useEffect } from 'react';
 //import { v4 as uuid } from "uuid";
 
+
+import "../App.css";
+
 function UpdateCountry({ children }){
 
     //set usestate for inputs
@@ -36,6 +39,8 @@ function UpdateCountry({ children }){
 
         return (
             <div>
+                <h1>Update Country Details</h1>
+
                 {/*Update form*/}
                 <form onSubmit ={handleSubmit} >
                     <table>
@@ -117,4 +122,4 @@ function UpdateCountry({ children }){
     
 }
 
-export default UpdateCountry
+export default UpdateCountry;
